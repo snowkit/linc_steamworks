@@ -1,0 +1,14 @@
+<xml>
+    <files id="haxe">
+
+        <compilerflag value='-I${LINC_STEAMWORKS_PATH}/linc/'/>
+        <compilerflag value='-I${LINC_STEAMWORKS_PATH}/lib/'/>
+
+        <file name="${LINC_STEAMWORKS_PATH}/linc/linc_steamworks.cpp" />
+
+    </files>
+
+    <target id='haxe'>
+        <lib name='${LINC_STEAMWORKS_PATH}/lib/lib/${BINDIR}/libsteam_api.dylib' if='mac'/>
+    </target>
+</xml>
