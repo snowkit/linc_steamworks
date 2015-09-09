@@ -1,4 +1,5 @@
 <xml>
+
     <files id="haxe">
 
         <compilerflag value='-I${LINC_STEAMWORKS_PATH}/linc/'/>
@@ -9,6 +10,9 @@
     </files>
 
     <target id='haxe'>
-        <lib name='${LINC_STEAMWORKS_PATH}/lib/lib/${BINDIR}/libsteam_api.dylib' if='mac'/>
+        <lib name='${LINC_STEAMWORKS_LIB_PATH}/mac/libsteam_api.dylib' if='mac'/>
+        <!-- need 64 bit distinction -->
+        <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows32/steam_api.lib' if='windows'/>
     </target>
+
 </xml>
