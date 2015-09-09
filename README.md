@@ -14,3 +14,7 @@ This library works with the Haxe cpp target only.
 ### Install
 
 `haxelib git linc_steamworks https://github.com/snowkit/linc_steamworks.git`
+
+### After install
+
+- see lib/README.md
