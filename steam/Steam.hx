@@ -11,7 +11,7 @@ package steam;
 extern class Steam {
 
     @:native('linc::steam::set_callback')
-    static function set_callback( func:cpp.Callable<Dynamic->Void> ): Void;
+    static function setCallback( func:cpp.Callable<Dynamic->Void> ): Void;
 
     @:native('SteamAPI_Init')
     static function init(): Bool;
