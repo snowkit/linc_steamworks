@@ -6,8 +6,10 @@ package steam;
 
 @:keep
 @:include('linc_steamworks.h')
+#if !display
 @:build(linc.Linc.touch())
 @:build(linc.Linc.xml('steamworks'))
+#end
 extern class Steam {
 
     @:native('linc::steam::set_callback')
