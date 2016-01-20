@@ -11,8 +11,14 @@
 
     <target id='haxe'>
         <lib name='${LINC_STEAMWORKS_LIB_PATH}/mac/libsteam_api.dylib' if='mac'/>
-        <!-- need 64 bit distinction -->
-        <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows32/steam_api.lib' if='windows'/>
+        <section if='windows'>
+            <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows32/steam_api.lib' if='HXCPP_M32'/>
+            <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows64/steam_api.lib' if='HXCPP_M64'/>
+        </section>
+        <section if='linux'>
+            <lib name='${LINC_STEAMWORKS_LIB_PATH}/linux32/libsteam_api.so' if='HXCPP_M32'/>
+            <lib name='${LINC_STEAMWORKS_LIB_PATH}/linux64/libsteam_api.so' if='HXCPP_M64'/>
+        </section>
     </target>
 
 </xml>
