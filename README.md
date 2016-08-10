@@ -25,7 +25,7 @@ This library works with the Haxe cpp target only.
 
 #### Copy the library files
 
-- Look inside lib/library/
+- Look inside `lib/library/`
 - Copy the correct dll/dylib/so into the correct folder 
 - Double check the right file/version/os, crashes/confusion otherwise
 
