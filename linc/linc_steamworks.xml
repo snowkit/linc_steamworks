@@ -10,14 +10,17 @@
     </files>
 
     <target id='haxe'>
-        <lib name='${LINC_STEAMWORKS_LIB_PATH}/mac/libsteam_api.dylib' if='mac'/>
+        <section if='mac'>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Mac32/libsteam_api.dylib' if='HXCPP_M32'/>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Mac64/libsteam_api.dylib' if='HXCPP_M64'/>
+        </section>
         <section if='windows'>
-            <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows32/steam_api.lib' if='HXCPP_M32'/>
-            <lib name='${LINC_STEAMWORKS_LIB_PATH}/windows64/steam_api.lib' if='HXCPP_M64'/>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Windows32/steam_api.lib' if='HXCPP_M32'/>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Windows64/steam_api.lib' if='HXCPP_M64'/>
         </section>
         <section if='linux'>
-            <lib name='${LINC_STEAMWORKS_LIB_PATH}/linux32/libsteam_api.so' if='HXCPP_M32'/>
-            <lib name='${LINC_STEAMWORKS_LIB_PATH}/linux64/libsteam_api.so' if='HXCPP_M64'/>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Linux32/libsteam_api.so' if='HXCPP_M32'/>
+            <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Linux64/libsteam_api.so' if='HXCPP_M64'/>
         </section>
     </target>
 
