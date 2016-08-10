@@ -17,6 +17,8 @@ This library works with the Haxe cpp target only.
 
 ### VERY IMPORTANT setup for after install
 
+You need to copy the sdk files to your linc_steamworks folder.
+
 #### Copy the sdk headers
 
 - Make a folder inside lib called steam: `lib/steam/`
