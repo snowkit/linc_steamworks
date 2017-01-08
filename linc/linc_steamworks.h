@@ -1,9 +1,8 @@
-#ifndef _LINC_STEAMWORKS_H_
-#define _LINC_STEAMWORKS_H_
-
-#include "../lib/steam/steam_api.h"
+#pragma once
 
 #include <hxcpp.h>
+
+#include "../lib/steam/steam_api.h"
 
 namespace linc {
 
@@ -24,6 +23,3 @@ namespace linc {
     } //steam namespace
 
 } //linc namespace
-
-
-#endif //_LINC_STEAMWORKS_H_
