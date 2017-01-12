@@ -72,7 +72,7 @@ extern class Steam {
     // static function controller() : Dynamic;
 
     @:native('SteamUGC')
-    static function UGC() : Dynamic;
+    static function UGC() : UGC;
 
     // @:native('SteamAppList')
     // static function appList() : Dynamic;
