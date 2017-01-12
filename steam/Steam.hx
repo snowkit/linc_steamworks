@@ -336,12 +336,10 @@ extern class UGC {
     function addItemPreviewVideo(handle:UGCUpdateHandle, videoID:String):Bool;
 
     @:native('UpdateItemPreviewFile')
-    function updateItemPreviewFile(handle:UGCUpdateHandle, index:cpp.uint32, previewfile:String):Bool;
 
     @:native('UpdateItemPreviewVideo')
-    function updateItemPreviewVideo(handle:UGCUpdateHandle, index:cpp.uint32, videoID:String):Bool;
 
     @:native('RemoveItemPreview')
-    function removeItemPreview(handle:UGCUpdateHandle, index:cpp.uint32):Bool;
+    
 
 } //UGC
