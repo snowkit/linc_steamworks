@@ -10,6 +10,10 @@ package steam;
 @:build(linc.Linc.touch())
 @:build(linc.Linc.xml('steamworks'))
 #end
+
+typedef UGCUpdateHandle = cpp.UInt64;
+typedef SteamAPICall = cpp.UInt64;
+
 extern class Steam {
 
     @:native('linc::steam::set_callback')
@@ -67,8 +71,8 @@ extern class Steam {
     // @:native('SteamController')
     // static function controller() : Dynamic;
 
-    // @:native('SteamUGC')
-    // static function UGC() : Dynamic;
+    @:native('SteamUGC')
+    static function UGC() : Dynamic;
 
     // @:native('SteamAppList')
     // static function appList() : Dynamic;
@@ -110,6 +114,50 @@ extern class Steam {
             case k_RemoteStoragePlatformAll: 'All';
         }
     }
+}
+
+@:enum abstract WorkshopFileType(Int) from Int to Int {
+
+    var k_WorkshopFileTypeFirst = 0;
+
+    var k_WorkshopFileTypeCommunity              = 0;      // normal Workshop item that can be subscribed to
+    var k_WorkshopFileTypeMicrotransaction       = 1;      // Workshop item that is meant to be voted on for the purpose of selling in-game
+    var k_WorkshopFileTypeCollection             = 2;      // a collection of Workshop or Greenlight items
+    var k_WorkshopFileTypeArt                    = 3;      // artwork
+    var k_WorkshopFileTypeVideo                  = 4;      // external video
+    var k_WorkshopFileTypeScreenshot             = 5;      // screenshot
+    var k_WorkshopFileTypeGame                   = 6;      // Greenlight game entry
+    var k_WorkshopFileTypeSoftware               = 7;      // Greenlight software entry
+    var k_WorkshopFileTypeConcept                = 8;     // Greenlight concept
+    var k_WorkshopFileTypeWebGuide               = 9;      // Steam web guide
+    var k_WorkshopFileTypeIntegratedGuide        = 10;     // application integrated guide
+    var k_WorkshopFileTypeMerch                  = 11;     // Workshop merchandise meant to be voted on for the purpose of being sold
+    var k_WorkshopFileTypeControllerBinding      = 12;     // Steam Controller bindings
+    var k_WorkshopFileTypeSteamworksAccessInvite = 13;     // internal
+    var k_WorkshopFileTypeSteamVideo             = 14;     // Steam video
+    var k_WorkshopFileTypeGameManagedItem        = 15;     // managed completely by the game, not the user, and not shown on the web
+
+    // Update k_EWorkshopFileTypeMax if you add values.
+    var k_WorkshopFileTypeMax = 16;
+}
+
+@:enum abstract RemoteStoragePublishedFileVisibility(Int) from Int to Int {
+
+    var k_RemoteStoragePublishedFileVisibilityPublic = 0;
+    var k_RemoteStoragePublishedFileVisibilityFriendsOnly = 1;
+    var k_RemoteStoragePublishedFileVisibilityPrivate = 2;
+
+}
+
+@:enum abstract ItemPreviewType(Int) from Int to Int {
+
+    var k_EItemPreviewType_Image = 0;
+    var k_EItemPreviewType_YouTubeVideo = 1;
+    var k_EItemPreviewType_Sketchfab = 2;
+    var k_EItemPreviewType_EnvironmentMap_HorizontalCross = 3;
+    var k_EItemPreviewType_EnvironmentMap_LatLong = 4;
+    var k_EItemPreviewType_ReservedMax = 255;
+
 }
 
 @:keep
@@ -239,3 +287,61 @@ extern class UserStats {
     function resetAllStats( andAchievements:Bool ):Bool; 
 
 } //UserStats
+
+@:keep
+@:include('linc_steamworks.h')
+@:native('ISteamUGC*')
+extern class UGC {
+
+    @:native('CreateItem')
+    function createItem(appId:cpp.Int64, fileType:WorkshopFileType):SteamAPICall;
+
+    @:native('StartItemUpdate')
+    function startItemUpdate(appId:cpp.Int64, publishedFileID:cpp.Int64):UGCUpdateHandle;
+
+    @:native('SetItemTitle')
+    function setItemTitle(handle:UGCUpdateHandle, title:String):Bool;
+
+    @:native('SetItemDescription')
+    function setItemDescription(handle:UGCUpdateHandle, description:String):Bool;
+
+    @:native('SetItemUpdateLanguage')
+    function setItemUpdateLanguage(handle:UGCUpdateHandle, language:String):Bool;
+
+    @:native('SetItemMetadata')
+    function setItemMetadata(handle:UGCUpdateHandle, language:String):Bool;
+
+    @:native('SetItemVisibility')
+    function setItemVisibility(handle:UGCUpdateHandle, visibility:RemoteStoragePublishedFileVisibility):Bool;
+/*
+    @:native('SetItemTags')
+    function setItemTags(handle:UGCUpdateHandle, tags:SteamParamStringArray):Bool;
+*/
+    @:native('SetItemContent')
+    function setItemContent(handle:UGCUpdateHandle, contentfolder:String):Bool;
+
+    @:native('SetItemPreview')
+    function setItemPreview(handle:UGCUpdateHandle, previewfile:String):Bool;
+
+    @:native('RemoveItemKeyValueTags')
+    function removeItemKeyValueTags(handle:UGCUpdateHandle, key:String):Bool;
+    
+    @:native('AddItemKeyValueTag')
+    function addItemKeyValueTag(handle:UGCUpdateHandle, key:String, tag:String):Bool;
+
+    @:native('AddItemPreviewFile')
+    function addItemPreviewFile(handle:UGCUpdateHandle, previewfile:String, type:ItemPreviewType):Bool;
+
+    @:native('AddItemPreviewVideo')
+    function addItemPreviewVideo(handle:UGCUpdateHandle, videoID:String):Bool;
+
+    @:native('UpdateItemPreviewFile')
+    function updateItemPreviewFile(handle:UGCUpdateHandle, index:cpp.uint32, previewfile:String):Bool;
+
+    @:native('UpdateItemPreviewVideo')
+    function updateItemPreviewVideo(handle:UGCUpdateHandle, index:cpp.uint32, videoID:String):Bool;
+
+    @:native('RemoveItemPreview')
+    function removeItemPreview(handle:UGCUpdateHandle, index:cpp.uint32):Bool;
+
+} //UGC
