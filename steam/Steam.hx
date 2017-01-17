@@ -4,15 +4,15 @@ package steam;
 //:todo: cloud save calls
 //:todo: callbacks
 
+typedef UGCUpdateHandle = cpp.UInt64;
+typedef SteamAPICall = cpp.UInt64;
+
 @:keep
 @:include('linc_steamworks.h')
 #if !display
 @:build(linc.Linc.touch())
 @:build(linc.Linc.xml('steamworks'))
 #end
-
-typedef UGCUpdateHandle = cpp.UInt64;
-typedef SteamAPICall = cpp.UInt64;
 
 extern class Steam {
 
@@ -72,7 +72,7 @@ extern class Steam {
     // static function controller() : Dynamic;
 
     @:native('SteamUGC')
-    static function UGC() : UGC;
+    static function ugc() : UGC;
 
     // @:native('SteamAppList')
     // static function appList() : Dynamic;
@@ -313,10 +313,10 @@ extern class UGC {
 
     @:native('SetItemVisibility')
     function setItemVisibility(handle:UGCUpdateHandle, visibility:RemoteStoragePublishedFileVisibility):Bool;
-/*
-    @:native('SetItemTags')
-    function setItemTags(handle:UGCUpdateHandle, tags:SteamParamStringArray):Bool;
-*/
+
+    //@:native('SetItemTags')
+    //function setItemTags(handle:UGCUpdateHandle, tags:SteamParamStringArray):Bool;
+
     @:native('SetItemContent')
     function setItemContent(handle:UGCUpdateHandle, contentfolder:String):Bool;
 
