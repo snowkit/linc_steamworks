@@ -293,8 +293,8 @@ extern class UserStats {
 @:native('ISteamUGC*')
 extern class UGC {
 
-    @:native('CreateItem')
-    function createItem(appId:cpp.Int64, fileType:WorkshopFileType):SteamAPICall;
+    @:native('linc::steam::createItem')
+    function createItem():SteamAPICall;
 
     @:native('StartItemUpdate')
     function startItemUpdate(appId:cpp.Int64, publishedFileID:cpp.Int64):UGCUpdateHandle;

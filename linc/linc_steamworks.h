@@ -17,6 +17,9 @@ namespace linc {
         bool fileWrite(::String name, ::Array<unsigned char> src, int length);
         int fileRead(::String name, ::Array<unsigned char> dest, int length);
 
+            //UGC
+        int createItem();
+
         typedef ::cpp::Function < Void(Dynamic) > UserCallbackHandler;
         extern void set_callback(UserCallbackHandler fn);
 
