@@ -251,7 +251,8 @@ extern class UserStats {
     function updateAvgRateStat(name:String, countThisSession:Float, SessionLength:Float):Bool;
 
     @:native('linc::steam::getAchievement')
-    function getAchievement(name:String):Bool;
+    private static function _getAchievement(name:String):Bool;
+    inline function getAchievement(name:String):Bool return _getAchievement(name);
 
     @:native('SetAchievement')
     function setAchievement(name:String):Bool;
@@ -294,7 +295,8 @@ extern class UserStats {
 extern class UGC {
 
     @:native('linc::steam::createItem')
-    function createItem():SteamAPICall;
+    private static function _createItem():SteamAPICall;
+    inline function createItem():SteamAPICall return _createItem();
 
     @:native('StartItemUpdate')
     function startItemUpdate(appId:cpp.Int64, publishedFileID:cpp.Int64):UGCUpdateHandle;
