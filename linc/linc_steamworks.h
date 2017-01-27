@@ -18,7 +18,7 @@ namespace linc {
         int fileRead(::String name, ::Array<unsigned char> dest, int length);
 
             //UGC
-        int createItem();
+        static uint64 createItem(int64 appid, int filetype) { return SteamUGC()->CreateItem(appid, static_cast<EWorkshopFileType>(filetype)); }
 
         typedef ::cpp::Function < Void(Dynamic) > UserCallbackHandler;
         extern void set_callback(UserCallbackHandler fn);

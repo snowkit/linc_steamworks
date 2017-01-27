@@ -49,14 +49,6 @@ namespace linc {
 
             } //fileRead
 
-        //UGC
-
-            int createItem() {
-
-                return 0;//SteamUGC()->CreateItem(appId, EWorkshopFileType(filetype));
-
-            } //createItem
-
     //Callback types
 
         struct Callbacks {
