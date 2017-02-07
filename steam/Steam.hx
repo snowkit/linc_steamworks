@@ -31,7 +31,6 @@ extern class Steam {
     @:native('SteamAPI_RunCallbacks')
     static function runCallbacks(): Void;
 
-
     @:native('SteamUser')
     static function user() : Dynamic;
 
@@ -295,9 +294,24 @@ extern class UserStats {
 extern class UGC {
 
     @:native('linc::steam::createItem')
-
     private static function _createItem(appId:cpp.Int64, fileType:Int):SteamAPICall;
     inline function createItem(appId:cpp.Int64, fileType:Int) : SteamAPICall return _createItem(appId, fileType);
+
+    @:native('linc::steam::setCallResult_CreateItem')
+    private static function _setCallResult_CreateItem( handle:SteamAPICall ): Void;
+    inline function setCallResult_CreateItem( handle:SteamAPICall ) : Void { _setCallResult_CreateItem(handle); };
+
+    @:native('linc::steam::getCallResult_CreateItem_HasResult')
+    private static function _getCallResult_CreateItem_HasResult(): Null<Bool>;
+    inline function getCallResult_CreateItem_HasResult() : Null<Bool> { return _getCallResult_CreateItem_HasResult(); };
+
+    @:native('linc::steam::getCallResult_CreateItem_GetResult')
+    private static function _getCallResult_CreateItem_GetResult(): Null<Int>;
+    inline function getCallResult_CreateItem_GetResult() : Null<Int> { return _getCallResult_CreateItem_GetResult(); };
+
+    @:native('linc::steam::getCallResult_CreateItem_AcceptLicenseAgreement')
+    private static function _getCallResult_CreateItem_AcceptLicenseAgreement(): Null<Bool>;
+    inline function getCallResult_CreateItem_AcceptLicenseAgreement() : Null<Bool> { return _getCallResult_CreateItem_AcceptLicenseAgreement(); };
 
     @:native('StartItemUpdate')
     function startItemUpdate(appId:cpp.Int64, publishedFileID:cpp.Int64):UGCUpdateHandle;

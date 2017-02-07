@@ -55,8 +55,7 @@ namespace linc {
             Callbacks():
                 stats_received(this, &Callbacks::on_stats_received),
                 stats_stored(this, &Callbacks::on_stats_stored),
-                ach_stored(this, &Callbacks::on_ach_stored),
-                create_item_result(this, &Callbacks::on_create_item_result)
+                ach_stored(this, &Callbacks::on_ach_stored)
             {
                 //constructor
             }
@@ -64,7 +63,6 @@ namespace linc {
             STEAM_CALLBACK( Callbacks, on_stats_received,       UserStatsReceived_t,     stats_received );
             STEAM_CALLBACK( Callbacks, on_stats_stored,         UserStatsStored_t,       stats_stored );
             STEAM_CALLBACK( Callbacks, on_ach_stored,           UserAchievementStored_t, ach_stored );
-            STEAM_CALLBACK( Callbacks, on_create_item_result,   CreateItemResult_t,      create_item_result );
         };
 
     //Callback setter
@@ -118,12 +116,8 @@ namespace linc {
                 _result->m_nGameID
             );
             emit_callback(::String("Achievement stored!"));
-        }
 
-        void Callbacks::on_create_item_result( CreateItemResult_t *_result )
-        {
-            emit_callback(::String("Create item result received!"));
-        }    
+        }
 
     } //steam namespace
 
