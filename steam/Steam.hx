@@ -5,6 +5,7 @@ package steam;
 //:todo: callbacks
 
 typedef UGCUpdateHandle = cpp.UInt64;
+typedef UGCPublishedFileID = cpp.UInt64;
 typedef SteamAPICall = cpp.UInt64;
 
 @:keep
@@ -313,8 +314,24 @@ extern class UGC {
     private static function _getCallResult_CreateItem_AcceptLicenseAgreement(): Null<Bool>;
     inline function getCallResult_CreateItem_AcceptLicenseAgreement() : Null<Bool> { return _getCallResult_CreateItem_AcceptLicenseAgreement(); };
 
+    @:native('linc::steam::getCallResult_CreateItem_GetPublishedFileID')
+    private static function _getCallResult_CreateItem_GetPublishedFileID(): UGCPublishedFileID;
+    inline function getCallResult_CreateItem_GetPublishedFileID() : UGCPublishedFileID { return _getCallResult_CreateItem_GetPublishedFileID(); };
+
+    @:native('linc::steam::setCallResult_SubmitItem')
+    private static function _setCallResult_SubmitItem( handle:SteamAPICall ): Void;
+    inline function setCallResult_SubmitItem( handle:SteamAPICall ) : Void { _setCallResult_SubmitItem(handle); };
+
+    @:native('linc::steam::getCallResult_SubmitItem_HasResult')
+    private static function _getCallResult_SubmitItem_HasResult(): Null<Bool>;
+    inline function getCallResult_SubmitItem_HasResult() : Null<Bool> { return _getCallResult_SubmitItem_HasResult(); };
+
+    @:native('linc::steam::getCallResult_SubmitItem_GetResult')
+    private static function _getCallResult_SubmitItem_GetResult(): Null<Int>;
+    inline function getCallResult_SubmitItem_GetResult() : Null<Int> { return _getCallResult_SubmitItem_GetResult(); };
+
     @:native('StartItemUpdate')
-    function startItemUpdate(appId:cpp.Int64, publishedFileID:cpp.Int64):UGCUpdateHandle;
+    function startItemUpdate(appId:cpp.Int64, publishedFileID:UGCPublishedFileID):UGCUpdateHandle;
 
     @:native('SetItemTitle')
     function setItemTitle(handle:UGCUpdateHandle, title:String):Bool;
@@ -328,8 +345,9 @@ extern class UGC {
     @:native('SetItemMetadata')
     function setItemMetadata(handle:UGCUpdateHandle, language:String):Bool;
 
-    @:native('SetItemVisibility')
-    function setItemVisibility(handle:UGCUpdateHandle, visibility:RemoteStoragePublishedFileVisibility):Bool;
+    @:native('linc::steam::setItemVisibility')
+    private static function _setItemVisibility(handle:UGCUpdateHandle, visibility:Int) : Bool;
+    inline function setItemVisibility(handle:UGCUpdateHandle, visibility:Int) : Bool { return _setItemVisibility(handle, visibility); };
 
     //@:native('SetItemTags')
     //function setItemTags(handle:UGCUpdateHandle, tags:SteamParamStringArray):Bool;
@@ -360,6 +378,9 @@ extern class UGC {
 
     @:native('RemoveItemPreview')
     function removeItemPreview(handle:UGCUpdateHandle, index:cpp.UInt32):Bool;
+
+    @:native('SubmitItemUpdate')
+    function submitItemUpdate(handle:UGCUpdateHandle, changeNote:String) : SteamAPICall;
     
 
 } //UGC
