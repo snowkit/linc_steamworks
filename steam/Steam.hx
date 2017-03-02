@@ -382,5 +382,20 @@ extern class UGC {
     @:native('SubmitItemUpdate')
     function submitItemUpdate(handle:UGCUpdateHandle, changeNote:String) : SteamAPICall;
     
+    @:native('linc::steam::getNumSubscribedItems')
+    private static function _getNumSubscribedItems(): Null<Int>;
+    inline function getNumSubscribedItems() : Null<Int> { return _getNumSubscribedItems(); };
+
+    @:native('linc::steam::getSubscribedItemsList')
+    private static function _getSubscribedItemsList(maxEntries : Int) : Void;
+    inline function getSubscribedItemsList(maxEntries : Int) : Void return _getSubscribedItemsList(maxEntries);
+
+    @:native('linc::steam::getSubscribedItem')
+    private static function _getSubscribedItem(value : Int) : Int;
+    inline function getSubscribedItem(value : Int) : Int return _getSubscribedItem(value);
+
+    @:native('linc::steam::getSubscribedItemFilepath')
+    private static function _getSubscribedItemFilepath(itemID : Int) : cpp.ConstCharStar;
+    inline function getSubscribedItemFilepath(itemID : Int) : String return cast _getSubscribedItemFilepath(itemID);
 
 } //UGC

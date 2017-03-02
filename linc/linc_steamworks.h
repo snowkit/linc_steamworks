@@ -81,8 +81,17 @@ namespace linc {
         int fileRead(::String name, ::Array<unsigned char> dest, int length);
 
             //UGC
+        static PublishedFileId_t* subscribedItems;
+        static int subscribedItemsLength;
+        static char* pFolder;
+        static uint64* psizeonDisk;
+        static uint32* pTimeStamp;
         static uint64 createItem(int64 appid, int filetype) { return SteamUGC()->CreateItem(appid, static_cast<EWorkshopFileType>(filetype)); }
         static bool setItemVisibility(uint64 updateHandle, int visibility) { return SteamUGC()->SetItemVisibility(updateHandle, static_cast<ERemoteStoragePublishedFileVisibility>(visibility)); }
+        static hx::Null<int> getNumSubscribedItems() { return SteamUGC()->GetNumSubscribedItems(); }
+        static void getSubscribedItemsList(int maxentries){ subscribedItems = new PublishedFileId_t[maxentries]; SteamUGC()->GetSubscribedItems(subscribedItems, maxentries); subscribedItemsLength = maxentries; pFolder = new char[1024]; }
+        static uint64 getSubscribedItem(int count){ return subscribedItems[count]; }
+        static const char* getSubscribedItemFilepath(uint64 itemID){ SteamUGC()->GetItemInstallInfo(itemID, psizeonDisk, pFolder, 1024, pTimeStamp); const char *str = pFolder; return str; }
 
         //callfunctions
         //create item
