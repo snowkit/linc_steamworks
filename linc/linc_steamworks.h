@@ -28,6 +28,11 @@ namespace linc {
             int GetCallResult(){ return m_ResultEnum; }
             bool HasResult(){ return m_HasResult; }
 
+            void Reset(){
+                m_HasResult = false;
+                m_ResultEnum = -1;
+            }
+
         private:
 
             CCallResult<CallResultSubmitItem, SubmitItemUpdateResult_t> m_callResultSubmitItem;
@@ -60,6 +65,12 @@ namespace linc {
             PublishedFileId_t GetPublishedFileID(){ return m_PublishedFileId; }
 
             bool HasResult(){ return m_HasResult; }
+
+            void Reset(){
+                m_HasResult = false;
+                m_UserNeedsToAcceptWorkshopLegalAgreement = false;
+                m_ResultEnum = -1;
+            }
 
         private:
 
@@ -96,7 +107,7 @@ namespace linc {
         //callfunctions
         //create item
         static CallResultCreateItem callresultCreateItem;
-        static void setCallResult_CreateItem(uint64 handle){ callresultCreateItem.setCallResult(handle); }
+        static void setCallResult_CreateItem(uint64 handle){ callresultCreateItem.Reset(); callresultCreateItem.setCallResult(handle); }
 
         static hx::Null<bool> getCallResult_CreateItem_HasResult(){ return callresultCreateItem.HasResult(); }
         static hx::Null<int>  getCallResult_CreateItem_GetResult(){ return callresultCreateItem.GetCallResult(); }
@@ -105,7 +116,7 @@ namespace linc {
 
         //submit item
         static CallResultSubmitItem callresultSubmitItem;
-        static void setCallResult_SubmitItem(uint64 handle){ callresultSubmitItem.setCallResult(handle); }
+        static void setCallResult_SubmitItem(uint64 handle){ callresultSubmitItem.Reset(); callresultSubmitItem.setCallResult(handle); }
 
         static hx::Null<bool> getCallResult_SubmitItem_HasResult(){ return callresultSubmitItem.HasResult(); }
         static hx::Null<int>  getCallResult_SubmitItem_GetResult(){ return callresultSubmitItem.GetCallResult(); }
