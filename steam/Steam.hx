@@ -35,8 +35,8 @@ extern class Steam {
     @:native('SteamUser')
     static function user() : Dynamic;
 
-    // @:native('SteamFriends')
-    // static function friends() : Dynamic;
+    @:native('SteamFriends')
+    static function friends() : Friends;
 
     // @:native('SteamUtils')
     // static function utils() : Dynamic;
@@ -399,3 +399,11 @@ extern class UGC {
     inline function getSubscribedItemFilepath(itemID : Int) : String return cast _getSubscribedItemFilepath(itemID);
 
 } //UGC
+
+@:keep
+@:include('linc_steamworks.h')
+@:native('ISteamFriends*')
+extern class Friends {
+
+    @:native('ActivateGameOverlayToWebPage')
+    function activateGameOverlayToWebPage(url:String) : Void;
