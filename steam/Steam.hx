@@ -407,3 +407,5 @@ extern class Friends {
 
     @:native('ActivateGameOverlayToWebPage')
     function activateGameOverlayToWebPage(url:String) : Void;
+
+} //Friends
