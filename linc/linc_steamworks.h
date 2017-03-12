@@ -17,7 +17,13 @@ namespace linc {
         bool fileWrite(::String name, ::Array<unsigned char> src, int length);
         int fileRead(::String name, ::Array<unsigned char> dest, int length);
 
-        typedef ::cpp::Function < Void(Dynamic) > UserCallbackHandler;
+        #if (HXCPP_API_LEVEL>=330)
+            typedef void LincSteamworksVoid;
+        #else
+            typedef Void LincSteamworksVoid;
+        #endif
+
+        typedef ::cpp::Function < LincSteamworksVoid(Dynamic) > UserCallbackHandler;
         extern void set_callback(UserCallbackHandler fn);
 
     } //steam namespace
