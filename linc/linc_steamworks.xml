@@ -19,6 +19,7 @@
             <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Windows64/steam_api.lib' if='HXCPP_M64'/>
         </section>
         <section if='linux'>
+            <flag value="--Wl,-rpath=$ORIGIN"/>
             <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Linux32/libsteam_api.so' if='HXCPP_M32'/>
             <lib name='${LINC_STEAMWORKS_PATH}/lib/library/Linux64/libsteam_api.so' if='HXCPP_M64'/>
         </section>
