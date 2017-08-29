@@ -120,9 +120,15 @@ namespace linc {
 
         static hx::Null<bool> getCallResult_SubmitItem_HasResult(){ return callresultSubmitItem.HasResult(); }
         static hx::Null<int>  getCallResult_SubmitItem_GetResult(){ return callresultSubmitItem.GetCallResult(); }
+    
+        #if (HXCPP_API_LEVEL>=330)
+            typedef void LincSteamworksVoid;
+        #else
+            typedef Void LincSteamworksVoid;
+        #endif
 
         //callbacks
-        typedef ::cpp::Function < Void(Dynamic) > UserCallbackHandler;
+        typedef ::cpp::Function < LincSteamworksVoid(Dynamic) > UserCallbackHandler;
         extern void set_callback(UserCallbackHandler fn);
 
     } //steam namespace
