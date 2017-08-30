@@ -120,7 +120,7 @@ namespace linc {
 
         static hx::Null<bool> getCallResult_SubmitItem_HasResult(){ return callresultSubmitItem.HasResult(); }
         static hx::Null<int>  getCallResult_SubmitItem_GetResult(){ return callresultSubmitItem.GetCallResult(); }
-
+    
         //callbacks
         #if (HXCPP_API_LEVEL>=330)
             typedef void LincSteamworksVoid;
