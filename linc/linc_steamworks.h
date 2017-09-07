@@ -99,7 +99,7 @@ namespace linc {
         static uint32* pTimeStamp;
         static uint64 createItem(int64 appid, int filetype) { return SteamUGC()->CreateItem(appid, static_cast<EWorkshopFileType>(filetype)); }
         static bool setItemVisibility(uint64 updateHandle, int visibility) { return SteamUGC()->SetItemVisibility(updateHandle, static_cast<ERemoteStoragePublishedFileVisibility>(visibility)); }
-        static hx::Null<int> getNumSubscribedItems() { return SteamUGC()->GetNumSubscribedItems(); }
+        static int getNumSubscribedItems() { return SteamUGC()->GetNumSubscribedItems(); }
         static void getSubscribedItemsList(int maxentries){ subscribedItems = new PublishedFileId_t[maxentries]; SteamUGC()->GetSubscribedItems(subscribedItems, maxentries); subscribedItemsLength = maxentries; pFolder = new char[1024]; }
         static uint64 getSubscribedItem(int count){ return subscribedItems[count]; }
         static const char* getSubscribedItemFilepath(uint64 itemID){ SteamUGC()->GetItemInstallInfo(itemID, psizeonDisk, pFolder, 1024, pTimeStamp); const char *str = pFolder; return str; }
@@ -109,17 +109,17 @@ namespace linc {
         static CallResultCreateItem callresultCreateItem;
         static void setCallResult_CreateItem(uint64 handle){ callresultCreateItem.Reset(); callresultCreateItem.setCallResult(handle); }
 
-        static hx::Null<bool> getCallResult_CreateItem_HasResult(){ return callresultCreateItem.HasResult(); }
-        static hx::Null<int>  getCallResult_CreateItem_GetResult(){ return callresultCreateItem.GetCallResult(); }
-        static hx::Null<bool> getCallResult_CreateItem_AcceptLicenseAgreement(){ return callresultCreateItem.GetNeedsToAcceptLicenseAgreement(); }
+        static bool getCallResult_CreateItem_HasResult(){ return callresultCreateItem.HasResult(); }
+        static int  getCallResult_CreateItem_GetResult(){ return callresultCreateItem.GetCallResult(); }
+        static bool getCallResult_CreateItem_AcceptLicenseAgreement(){ return callresultCreateItem.GetNeedsToAcceptLicenseAgreement(); }
         static uint64 getCallResult_CreateItem_GetPublishedFileID(){ return callresultCreateItem.GetPublishedFileID(); }
 
         //submit item
         static CallResultSubmitItem callresultSubmitItem;
         static void setCallResult_SubmitItem(uint64 handle){ callresultSubmitItem.Reset(); callresultSubmitItem.setCallResult(handle); }
 
-        static hx::Null<bool> getCallResult_SubmitItem_HasResult(){ return callresultSubmitItem.HasResult(); }
-        static hx::Null<int>  getCallResult_SubmitItem_GetResult(){ return callresultSubmitItem.GetCallResult(); }
+        static bool getCallResult_SubmitItem_HasResult(){ return callresultSubmitItem.HasResult(); }
+        static int  getCallResult_SubmitItem_GetResult(){ return callresultSubmitItem.GetCallResult(); }
     
         //callbacks
         #if (HXCPP_API_LEVEL>=330)
