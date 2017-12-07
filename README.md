@@ -2,7 +2,7 @@
 Haxe @:native bindings for the Valve Steamworks SDK.    
 
 **Please note this library is a work in progress.**       
-While it has been used in 2 shipped Steam games, it only has as much as was needed for those games. Filling out the rest of the library will take time. Currently mostly `UserStats`, `RemoteStorage` and `UGC` are usable.
+While it has been used in 2 shipped Steam games ([Operator Overload](http://store.steampowered.com/app/499140/Operator_Overload/) and [The Westport Independent](http://store.steampowered.com/app/352240/The_Westport_Independent/)), it only has as much as was needed for those games. Filling out the rest of the library will take time. Currently mostly `UserStats`, `RemoteStorage` and `UGC` are usable.
 
 To use this library an agreement and account are required.   
 Visit https://partner.steamgames.com/ for full details, and the SDK download.
